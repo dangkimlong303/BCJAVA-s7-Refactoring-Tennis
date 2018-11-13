@@ -3,21 +3,8 @@ public class TennisGame {
     public static String getScore(String player1Name, String player2Name, int scorePlayer1, int scorePlayer2) {
         String score = "";
         boolean isSameScore = scorePlayer1 == scorePlayer2;
-        if (isSameScore)
-        {
-            score = getResultSameScore(scorePlayer1);
-        }
-        else {
-            boolean isGreaterThan4 = scorePlayer1 >=4 || scorePlayer2 >=4;
-            if (isGreaterThan4)
-            {
-              score = getAdvantage(scorePlayer1,scorePlayer2);
-            }
-            else
-            {
-               score = getCurentScore(scorePlayer1,scorePlayer2);
-            }
-        }
+        if (isSameScore) score = getResultSameScore(scorePlayer1);
+        else score = findAWinner(scorePlayer1,scorePlayer2);
         return score;
     }
 
@@ -98,6 +85,19 @@ public class TennisGame {
                     score+="Forty";
                     break;
             }
+        }
+        return score;
+    }
+    private static String findAWinner(int score1, int score2){
+        String score = "";
+        boolean isGreaterThan4 = score1 >=4 || score2 >=4;
+        if (isGreaterThan4)
+        {
+            score = getAdvantage(score1,score2);
+        }
+        else
+        {
+            score = getCurentScore(score1,score2);
         }
         return score;
     }
